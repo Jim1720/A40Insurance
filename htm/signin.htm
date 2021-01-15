@@ -1,0 +1,44 @@
+ 
+<div  container ng-controller="signinController"> 
+
+ 
+
+<br><br> 
+
+
+<h2 class='starttitle' style='color:white'>Customer Sign In</h2> 
+<br>
+
+<div style="color:dodgerblue"> 
+   
+
+        <div class="form-group row justify-content-center" >  
+                 <div class="col-xs-3">  
+                     <label class="control-label st1">Customer Id Number:</label> 
+                     <input type="text" class="form-control st1" ng-model="custId">
+                </div>  
+         </div>        
+        <div class="form-group row justify-content-center" >  
+                <div class="col-xs-3">  
+                    <label class="control-label st1">Customer Password:</label> 
+                   <input type="password" class="form-control st1" ng-model="custPass">   
+                </div>    
+        </div> 
+
+        <br>
+        <div class="form-group row justify-content-center" >     
+                <div>
+                    <button type="submit" class="btn btn-primary st1" ng-click="signin()">Sign In</button> 
+                    <a href="#!start"    class="btn btn-primary st1 b1"> Cancel</a>
+                    <br><br><br>
+                    <span style='color:lawngreen'>
+                            {{message}}
+                    </span>
+                </div>
+        </div> 
+ 
+
+ 
+</div>
+  
+

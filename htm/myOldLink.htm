@@ -1,0 +1,19 @@
+
+<div> 
+<ul>  
+
+<li><Button ng-mouseover="onHover()" ng-mouseleave="onLeave()" class="btn-outline-primary st1 b1" ng-click="onButton('start')">Start</Button></li> 
+<li><Button class="btn-outline-primary st1 b1" ng-click="onButton('classic')">Classic</Button></li>  
+<li><Button ng-show="!userSignedIn" class="btn-outline-primary st1 b1" ng-click="onButton('register')">Register</Button></li>
+<li><Button ng-show="!userSignedIn"class="btn-outline-primary st1 b1" ng-click="onButton('signin')">Sign In</Button></li>
+<li><button ng-show="userSignedIn" class="btn-outline-primary st1 b1" ng-click="onButton('claim')">File Claim</button></li>
+<li><button ng-show="userSignedIn" class="btn-outline-primary st1 b1" ng-click="onButton('history')">Claim History</button></li>
+<li><button ng-show="userSignedIn" class="btn-outline-primary st1 b1" ng-click="onButton('signout')">Sign Out</button></li>
+<li><button  ng-show="userSignedIn"class="btn-outline-primary st1 b1" ng-click="onButton('about')">About</button></li> 
+<li><span style='color:goldenrod; font-size: large'>{{customerFirst + ' ' + customerLast}}</span></li>
+
+</ul>
+</div>  
+
+<!-- ng-class="c"  c="a b c" -->
+<!-- change class var with onhover onleave to "btn-outline-warning st1 b1" -->

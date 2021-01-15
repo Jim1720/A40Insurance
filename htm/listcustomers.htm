@@ -1,0 +1,91 @@
+
+ 
+<div class="container"  ng-controller="listCustomersController"> 
+
+    <br> 
+    
+    <h2 class='starttitle'>Customer List</h2> <br>
+    
+       
+           <div class="row" form-control>
+                 
+                <table class="table">
+                       
+                        <tbody ng-repeat="customer in customerList">   
+                            <tr>
+                                <td style="color:gold">{{customer.custId}}</td>
+                                <td style="color:white">{{customer.name}}</td> 
+                                <td style="color:aqua">{{customer.appID}}</td>
+                            </tr>
+                            <tr>
+                                <td>Phone</td>
+                                <td>Email</td> 
+                            </tr>
+                            <tr>
+                                <td style="color:gold">{{customer.custPhone}}</td>
+                                <td style="color:gold">{{customer.custEmail}}</td>  
+                            </tr>
+                            <tr>
+                                <td>Address</td> 
+                            </tr>
+                            <tr>
+                                <td style="color:aqua">{{customer.address}}</td> 
+                            </tr>
+                            <tr>
+                                <td>Application</td> 
+                            </tr>
+                            
+                            <!--tr>
+                                <td style="color:goldenrod">{{claim.PatientFirst}}&nbsp;&nbsp;
+                                    {{claim.PatientLast}}</td> 
+                                <td style="color:aqua">{{claim.DateService}}</td>
+                                <td>{{claim.Clinic}}</td>
+                                <td>{{claim.Physician}}</td>
+                                <td>{{claim.Location}}</td>
+                            </!--tr>
+                                <tr>
+                                    <td>Diagnosis:</td>
+                                    <td>{{claim.Diagnosis1}}</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Procedure:</td>
+                                    <td>{{claim.Procedure1}}</td> 
+                                </tr>
+                
+                                <tr>
+                                    <td>Service:</td>
+                                    <td></td> 
+                                </tr>
+                                
+                                <tr>
+                                    <td>Note:</td>
+                                    <td></td> 
+                                </tr>
+                               
+                                <tr>
+                                -->
+
+                        </tbody>
+                        </table>
+
+           </div>
+
+                   
+            <div style="color:lawngreen" class="row" form-control>
+                   <br>{{message}} 
+            </div>  
+    
+            <br>
+            <div class="row" form-control>  
+                    <div class="col-md-4"></div>
+                    <div class="col-md-6"> 
+                        <a href="#!adminaction"     class="btn btn-primary st1 b1"> Menu </a>
+                    </div>
+            </div> 
+                
+    </div>
+    </body>
+    </html>
+    
+    
