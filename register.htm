@@ -1,0 +1,126 @@
+ 
+
+ 
+
+<h2 class='starttitle'  style='color: burlywood'>Customer Registration</h2>   
+<br>
+ 
+<div class="container" style="color:dodgerblue"    ng-controller="registrationController" >
+
+        <form> 
+
+                <div class="form-group row" >  
+
+                        <div class="col-xs-2">   
+                                <label class="control-label st1">Customer Id Number:</label> 
+                                <br><input type="text" class="form-control st1" ng-model="custId"> 
+                        </div>  
+                        <div class="col-xs-2">   
+                                <label class="control-label st1">Password:</label>  
+                                <br><input type="password" ng-model='custPass' class="form-control st1"> 
+                        </div> 
+                        <div class="col-xs-2">   
+                                <label class="control-label st1">Confirm:</label>  
+                                <br><input type="password" ng-model='custConfirm' class="form-control st1"> 
+                        </div>  
+                        
+                        <div class="col-xs-3">   
+                                <label class="control-label st1">Promotion Code:</label>     
+                                <br><input type="text" class="form-control st1" ng-model="promo"> 
+                         </div>  
+                         
+                </div> 
+                <div class="form-group row" >  
+
+                        <div class="col-xs-3">  
+                            <label class="control-label st1">First Name:</label>
+                            <input  type="text" ng-model='custFirst' class="form-control st1"> 
+                        </div>  
+                        <div class="col-xs-3">  
+                                <label class="control-label st1">Middle Name:</label>
+                                <input  type="text" ng-model='custMiddle' class="form-control st1"> 
+                            </div>    
+                    
+                        <div class="col-xs-3">  
+                            <label class="control-label st1">Last Name:</label> 
+                            <br><input  type="text" ng-model='custLast' class="form-control st1">
+                    
+                        </div> 
+                     
+
+                </div> 
+
+                <div class="form-group row" >  
+                        <div class="col-xs-5">    
+                                <label class="control-label st1">e-mail:</label>
+                                <br><input type="text" class="form-control st1" ng-model="custEmail"> 
+                        </div> 
+                        <div class="col-xs-5">     
+                                <label class="control-label st1">Telephone:</label> 
+                                <br><input type="text" class="form-control st1" ng-model="custPhone">
+                        </div>   
+                        <div class="col-xs-5">     
+                                <label class="control-label st1">Birth Date:</label> 
+                                <br><input type="text" class="form-control st1" ng-model="custBirthDate">
+                        </div>  
+                        <div class="col-xs-5">     
+                                <label class="control-label st1">Gender:</label>  
+                                <select class="form-control st1" ng-model="custGender">
+                                        <option>M</option>
+                                        <option>F</option>
+                                </select>
+                                <!--br><input type="text" class="form-control st1" ng-model="custGender"-->
+                        </div>          
+                </div> 
+
+                <div class="form-group row" >  
+                        <div class="col-xs-5">  
+                            <label class="control-label st1">Address1:</label>  
+                            <br><input type="text" class="form-control st1" ng-model="custAddr1">  
+                        </div>  
+               
+                        <div class="col-xs-5">    
+                            <label class="control-label st1">Address2:</label> 
+                            <br><input type="text" class="form-control st1" ng-model="custAddr2"> 
+                    
+                        </div>  
+                </div> 
+
+                <div class="form-group row" >  
+                        <div class="col-xs-3">    
+                                <label class="control-label st1">City:</label> 
+                                <br><input type="text" class="form-control st1" ng-model="custCity">  
+                        </div>    
+                    
+                        <div class="col-xs-3">    
+                                <label class="control-label st1">State:</label> 
+                                <select class="form-control st1" ng-model="custState">
+                                        <option>WA</option>
+                                        <option>CA</option>
+                                </select>
+                                <!--br><input type="text" class="form-control st1" ng-model="custState"-->  
+                        </div> 
+
+                        <div class="col-xs-3">     
+                                <label class="control-label st1">Zip:</label> 
+                                <br><input type="text" class="form-control st1" ng-model="custZip">  
+                        </div>  
+                        
+                  
+                </div>    
+
+                <br>
+                <div class="row" form-control>   
+                        <div class="col-md-10">
+                        <button type="submit" class="btn btn-primary st1" ng-click="registerCustomer()">Complete Registeration</button> 
+                        <a href="#!start"    class="btn btn-primary st1 b1"> Cancel</a>
+                        <span style='color:burlywood'> 
+                              <div> {{message}}  <div>  
+                        </span>
+                        </div>
+                </div> 
+
+</form>
+            
+</div>  
+

@@ -1,0 +1,135 @@
+ 
+<style>
+
+    th, td { color:white;}
+
+</style>
+
+<div class="container"  ng-controller="historyController"> 
+
+    <br> 
+    
+    <h2 class='starttitle'>Claim History Screen</h2>  
+    
+           <a href="#!hub"  style='margin-left: 30px'    class="btn btn-primary st1 b1"> Menu </a>  
+
+           <div class="row" style="margin-top:20px">
+                 
+                <table class="table">
+                        <thead class="thead-inverse">
+                            <tr>
+                                <th>Patient</th>
+                                <th>Service</th>
+                                <th>Service Date</th>
+                                <th>Clinic</th>
+                                <th>Doctor</th> 
+                            </tr>
+                        </thead>
+                        <tbody ng-repeat="claim in claims track by $index">   
+                            <tr> 
+                            <tr>
+                                <td style="color:goldenrod">{{claim.PatientFirst}}&nbsp;&nbsp;
+                                    {{claim.PatientLast}}</td> 
+                                <td style="color:lawngreen">{{claim.Service}}</td>
+                                <td style="color:aqua">{{claim.DateService}}</td>
+                                <td>{{claim.Clinic}}</td>
+                                <td>{{claim.Physician}}</td> 
+                            </tr>   
+                            <tr>
+                                <td style="color:gold">{{claim.ClaimIdNumber}}:{{claim.ClaimStatus}}</td> 
+                                <td>{{claim.ClaimType}}</td> 
+                                <td>{{claim.PlanId}}</td>
+                            </tr> 
+                                <tr>
+                                    <td>Procedure:</td>
+                                    <td>{{claim.Procedure1}}</td> 
+                                    <td>Diagnosis:</td>
+                                    <td>{{claim.Diagnosis1}}</td>
+                                    <td>Total Charge:</td>
+                                    <td style="color:lawngreen">${{claim.TotalCharge}}</td> 
+                                </tr> 
+                                <tr>
+                                    <td>Description:</td>
+                                    <td>{{claim.ClaimDescription}}</td> 
+                                    <td>Covered:</td>
+                                    <td style="color:lawngreen">${{claim.CoveredAmount}}</td> 
+                                    <td>Balance:</td>
+                                    <td style="color: lawngreen"> ${{claim.BalanceOwed}}</td> 
+                                   
+                                </tr>
+                                <tr>
+                                    <td>Confined:</td>
+                                    <td ng-show="{{claim.DateConfine!=''}}">{{claim.DateConfine}}</td> 
+                                    <td>Released:</td>
+                                    <td ng-show="{{claim.DateRelease!=''}}">{{claim.DateRelease}}<td> 
+                                </tr> 
+                                <tr ng-show="{{claim.ClaimType=='d'}}">
+                                    <td>Confined:</td>
+                                    <td>{{claim.ToothNumber}}</td>  
+                                </tr> 
+                                <tr ng-show="{{claim.ClaimType=='v'}}">
+                                    <td>Confined:</td>
+                                    <td>{{claim.Eyeware}}</td>  
+                                </tr> 
+                                <tr ng-show="{{claim.ClaimType=='x'}}">
+                                    <td>Confined:</td>
+                                    <td>{{claim.DrugName}}</td>  
+                                </tr> 
+                                <tr ng-show="{{claim.ClaimStatus.trim()==='Adjusted'}}">
+                                    <td>Claim Adjusted by:</td>
+                                    <td>{{claim.AdjustingClaimId}}</td> 
+                                    <td>Adjustment Date:</td>
+                                    <td>{{claim.AdjustedDate}}</td>
+                                </tr>
+                                <tr ng-show="{{claim.ClaimStatus.trim()==='Adjustment'}}">
+                                    <td>Adjustment for:</td>
+                                    <td>{{claim.AdjustedClaimId}}</td> 
+                                </tr> 
+                                <tr ng-show="{{claim.ClaimStatus.trim()==='Paid'}}"> 
+                                     <td>Payment Amount:</td>
+                                     <td>${{claim.PaymentAmount}}</td>
+                                     <td>Payment Date:</td>
+                                     <td>{{claim.PaymentDate}}</td>
+                                </tr>  
+                                <tr> 
+                                <td ng-show="{{claim.ClaimStatus.trim()!=='Adjusted'}}
+                                               && 
+                                               claim.ClaimStatus.trim()!=='Paid'">
+                                       <button type="button" 
+                                            class="btn btn-primary"
+                                            ng-click="adjustClaim($index)">
+                                            Adjust Claim
+                                        </button>
+                                </td>  
+                                <td ng-show="{{claim.ClaimStatus.trim()!=='Adjusted'
+                                               && 
+                                               claim.ClaimStatus.trim()!=='Paid'
+                                              }}">
+                                        <button type="button" 
+                                            class="btn btn-primary"
+                                            ng-click="payClaim($index)">
+                                            Pay Claim
+                                        </button>
+                                </td> 
+                                <td>
+                                    <a href="#!hub"  class="btn btn-primary st1 b1"> Menu </a>
+                                </td>
+                                </tr>
+
+                        </tbody>
+                        </table>
+
+           </div>
+
+                   
+            <div style="color:lawngreen" class="row" form-control>
+                   <br>{{message}} 
+            </div>  
+    
+            <br> 
+                
+    </div>
+    </body>
+    </html>
+    
+    

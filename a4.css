@@ -1,0 +1,144 @@
+
+   body { background-color: black; color: white;  }
+
+   .blue { color: var(--adj-color); }
+
+   .white { color: white; }
+
+   .menutitle { color: goldenrod; }  
+
+   .mainPic { display: block;
+              margin-left: auto;
+              margin-right: auto;
+              width: 82%;
+              height: 520px
+            }
+ 
+    .starttitle { color: burlywood;
+                  font-size: 14;
+                  font-family:Arial; 
+                  text-align: center;
+    }
+
+    .menutitle { color: burlywood;
+                 font-size: 14;
+                 font-family: Arial;
+                 text-align: left;
+              }
+
+   /* st1   signin screen text css */
+
+   .st1 { font-family: Arial;
+          font-size: larger }
+
+    
+   /* b1 hover class for buttons goldenrod */
+
+   /* TODO: change hover to btn-outline-warning */
+   
+   .b1:hover { color: goldenrod; background-color: black }
+   .b1 { color: white;  background-color: black; margin: 2px;
+         font-size:  larger;  }
+         
+   .hb1 { color: burlywood;  background-color: black; margin: 2px;
+      font-size:  larger;  }
+
+   .b2 { color: dodgerblue;  background-color: black; margin: 2px;
+            font-size:  larger;  }
+
+   .navMsg { color: goldenrod; font-family: Arial; font-size: x-large }
+
+/* display link tag list items inline */
+
+li  { display: inline; }
+ 
+
+/* menu button is a button not link */ 
+.b3-brand { color: lightskyblue; background-color:   black;  font-size: x-large;}
+
+.control-label { color: dodgerblue; font-size: mediume }
+
+
+/* t1 for text in start page left right spacing */
+
+.t1 { margin-left: 4px; margin-right: 4px;}
+.f1 { font-size: larger; }
+ 
+:root { 
+    
+   --adj-color: black;
+}
+
+.black-bar { background-color: black; }
+
+
+/* style links */
+
+.style1 { background-color: black; color: white; border-style: none; } 
+
+/* set in code - this is prototype only... */
+.color1 { background-color: black; color: white; border-style: none;}
+
+/* update and claim colors - for solid backgrounds. */
+
+/* header color */
+.sh { color: var(--h-color)} 
+/* label color */
+.sl { color: var(--label-color)} 
+/* message color */
+.sm { color: var(--message-color)}
+
+/* button text always white */
+.sw {  color: white; }
+  
+
+/* style effect classes from A60 css */
+
+.bg-style {
+ 
+   padding:  10px 20px 10px 20px;
+   margin-left: var(--margin-left);
+
+}
+
+.bg-image {
+   padding: 10px 40px 10px 40px;
+   margin-left: var(--margin-left);
+   background-image: url('../images/road.jpg');
+   background-size: 100% 100% 
+}
+
+/* these two classes use css variable */
+
+.bg-outline {
+   padding:  10px 20px 10px 20px;
+   margin-left: var(--margin-left);
+   border-style: solid;
+   border-width: 2px;
+   border-color: var(--user-color)
+}
+
+.bg-solid {
+   padding: 10px 20px 10px 20px;
+   margin-left: var(--margin-left);
+   background-color: var(--user-color)
+}
+
+
+.centerstyles {
+   margin-left: 250px;
+   margin-right: 250px;
+}
+/* claim screen */
+.centerclaimstyles {
+   margin-left: 20px;
+   margin-right: 20px;
+}
+
+/* carousel */
+
+/* javascript will change style */
+
+.mover { transition: style 1s; }
+
+.message { color: white; font-size: larger; }

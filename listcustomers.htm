@@ -1,0 +1,60 @@
+ 
+
+<div class="container"  ng-controller="listCustomersController"> 
+
+    <br> 
+    
+    <h2 class='starttitle'>Customer List</h2> <br>
+    
+       
+           <div class="row" form-control>
+                 
+                <table class="table">
+                       
+                        <tbody ng-repeat="customer in customerList">   
+                            <tr>
+                                <td style="color:gold">{{customer.custId}}</td>
+                                <td style="color:white">{{customer.name}}</td> 
+                            </tr>
+                            <tr>
+                                <td style="color: white;">Phone</td>
+                                <td style="color:white"> Email</td> 
+                            </tr>
+                            <tr>
+                                <td style="color:gold">{{customer.custPhone}}</td>
+                                <td style="color:gold">{{customer.custEmail}}</td>  
+                            </tr>
+                            <tr>
+                                <td style="color:white">Address</td> 
+                            </tr>
+                            <tr>
+                                <td style="color:aqua">{{customer.address}}</td> 
+                            </tr>
+                            <tr>
+                                <td style="color:white">Application</td>  
+                                <td style="color:aqua">{{customer.appID}}</td>
+                            </tr> 
+
+                        </tbody>
+                        </table>
+
+           </div>
+
+                   
+            <div style="color:lawngreen" class="row" form-control>
+                   <br>{{message}} 
+            </div>  
+    
+            <br>
+            <div class="row" form-control>  
+                    <div class="col-md-4"></div>
+                    <div class="col-md-6"> 
+                        <a href="#!adminaction"     class="btn btn-primary st1 b1"> Menu </a>
+                    </div>
+            </div> 
+                
+    </div>
+    </body>
+    </html>
+    
+    
