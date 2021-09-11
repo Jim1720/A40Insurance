@@ -1,0 +1,6 @@
+
+  read
+
+      TDD angualr js
+      auto refresh when saved by listeners
+      debug angular js

@@ -1,0 +1,160 @@
+ 
+
+
+
+<div class="container"  ng-controller="claimController"> 
+
+<div id="styleDiv" ng-class="externalClass">
+
+    <br> 
+    
+    <h2 class='starttitle sh'>File {{titleType}} Claim</h2><br>
+    
+    <div class="row">
+    
+        <div class="col-2">
+                <p style="color:white;font-size:large;">Select a claim type:</p>
+                <div class="ct list-group">
+                     <button type="button" class="btn btn-primary"
+                      ng-click="claimType('Medical')">
+                               Medical
+                     </button>
+
+                </div>
+                <br>
+                <div class="ct list-group">
+                        <button type="button" class="btn btn-primary"
+                         ng-click="claimType('Dental')">
+                                Dental
+                        </button>
+   
+                </div>
+                <br>
+                <div class="ct list-group">
+                        <button type="button" class="btn btn-primary"
+                         ng-click="claimType('Vision')">
+                                Vision
+                        </button>
+   
+                </div>
+                <br>
+                <div class="ct list-group">
+                        <button type="button" class="btn btn-primary"
+                         ng-click="claimType('Drug')">
+                                Pharmacy
+                        </button>
+   
+                </div>
+        </div>
+        <div class="col">
+   
+        <form> 
+            
+            <div class="form-group row" >  
+                    <div class="col-xs-5">     
+                            <label class="control-label st1 blue sl">First Name:</label> 
+                            <br><input type="text" class="form-control st1 blue" ng-model="PatientFirst"> 
+                    </div> 
+                    <div class="col-xs-5">   
+                        <label class="control-label st1 blue sl">Last Name:</label>   
+                        <br><input type="text" class="form-control st1 blue" ng-model="PatientLast">   
+                    </div>  
+                    <div class="col-xs-5">  
+                        <label class="control-label st1 blue sl">Description:</label>  
+                        <br><input type="text" class="form-control st1 blue" ng-model="ClaimDescription">  
+                    </div>        
+            </div> 
+                
+            <div class="form-group row" >  
+                    <div class="col-xs-5">    
+                            <label class="control-label st1 blue sl">Procedure:</label>  
+                            <br><input type="text" class="form-control st1 blue" ng-model="Procedure1">  
+                    </div> 
+                    <div class="col-xs-5">     
+                            <label class="control-label st1 blue sl">Diagnosis:</label>  
+                            <br><input type="text" class="form-control st1 blue" ng-model="Diagnosis1">  
+                    </div> 
+                    <!-- service drop down goes here -->  
+                     <div class="col-xs-5">  
+                        <label for="Service" class="control-label st1 blue sl" >
+                                Service:</label> <br> 
+
+                        <select  class="form-control st1" style="color:blue";
+                                 ng-model="serviceEntryObject"  
+                                 ng-selected="s.ServiceName==defaultValue || defaultValue==''"
+                                 ng-options="s.ServiceName for s in typeServices">
+                        </select>  
+                     
+                     </div>  
+            </div> 
+            <div class="form-group row" >       
+                    <div class="col-xs-5">       
+                            <label class="control-label st1 blue sl">Physician:</label> 
+                            <br><input type="text" class="form-control st1 blue" ng-model="Physician">  
+                    </div> 
+                    <div class="col-xs-5">     
+                            <label class="control-label st1 blue sl">Clinic:</label>   
+                            <br><input type="text" class="form-control st1 blue" ng-model="Clinic">  
+                    </div>    
+                    <div class="col-xs-5">       
+                            <label class="control-label st1 blue sl">Service Date:</label> 
+                            <br><input type="text" class="form-control st1 blue" ng-model="DateService">  
+                    </div>    
+            </div> 
+            <div ng-show="showMedical" class="form-group row" >  
+                    <div class="col-xs-5">       
+                            <label class="control-label st1 blue sl">Confine Date:</label> 
+                            <br><input type="text" class="form-control st1 blue" ng-model="DateConfine">  
+                    </div> 
+                    <div class="col-xs-5">   
+                            <label class="control-label st1 blue sl">Release Date:</label>  
+                            <br><input type="text" class="form-control st1 blue" ng-model="DateRelease"> 
+                    </div>       
+            </div> 
+
+            <div ng-show="showDental" class="form-group row" >  
+                <div class="col-xs-5">       
+                        <label class="control-label st1 blue sl">Tooth Number:</label> 
+                        <br><input type="text" class="form-control st1 blue sl" ng-model="ToothNumber">  
+                </div>  
+           </div> 
+
+           <div ng-show="showVision" class="form-group row" >  
+                <div class="col-xs-5">       
+                        <label class="control-label st1 blue sl">Vision Materials:</label> 
+                        <br><input type="text" class="form-control st1 blue sl" ng-model="Eyeware">  
+                </div>  
+           </div> 
+
+           <div ng-show="showDrug" class="form-group row" >  
+                <div class="col-xs-5">       
+                        <label class="control-label st1 blue sl">Pharmaceutical:</label> 
+                        <br><input type="text" class="form-control st1 blue sl" ng-model="DrugName">  
+                </div>  
+           </div> 
+                
+                
+            <br>
+            <div class="row" form-control>   
+                    <div class="col-md-10">
+                        <button type="submit"   class="btn btn-primary st1  sw" ng-click="fileClaim()">{{fileButton}}</button> 
+                        <a href="#!hub"     class="btn btn-primary st1 sw"> Menu </a> 
+                        
+                        <div class="sm" style="font-size:larger; margin-top:40px;">   
+                             {{message}}     
+                        </div>
+                    </div>
+            </div> 
+                 
+        </form>
+
+         </div> <!-- end col --> 
+         </div> <!-- end row -->
+                
+    </div>
+    </div>
+
+    </body>
+    </html>
+    
+    

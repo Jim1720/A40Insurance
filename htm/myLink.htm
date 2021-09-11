@@ -1,0 +1,92 @@
+ 
+<div>
+    <ul class="black-bar navbar   b3-navbar">  
+
+        <!-- myLink directive has scope:false to use parent/menuController scope..
+             the signin is 2nd level decendent so it has to use $parent.$parent as it
+             is below the router. See documentation in the myNav directive for an example. -->
+        
+        <!--   
+                 menuController  
+                 myLink directive            use $scope false to assume mainController scope.
+                                             so it is same scope not a child
+                 router (signin and others)  use $parent.$parent : looks like grandchild.
+        -->
+
+        <!-- [ngClass]="{'first': true, 'second': true, 'third': false}">. -->
+        
+        <!-- [ngClass]="{nav-item:true,bg-dark:true,hb1:!hiClassic,b1:hiClassic}" -->
+
+        <li  class="navbar-brand" style="color:burlywood">A40Insurance</li>  
+
+        <li  ng-show="!userSignedIn"><a
+            ng-class="{'nav-item':true,'black-bar':true,'hb1':hiStart,'b1':!hiStart}" 
+              href="#!start"    >Start</a></li>
+
+        <li  ng-show="!userSignedIn"><a 
+             ng-class="{'nav-item':true,'black-bar':true,'hb1':hiClassic,'b1':!hiClassic}" 
+             href="#!classic"   >Classic</a></li>
+ 
+        <li  ng-show="!userSignedIn"> <a
+             ng-class="{'nav-item':true,'black-br':true,'hb1':hiRegister,'b1':!hiRegister}"
+             href="#!register"  >Register</a></li>
+
+        <li  ng-show="!userSignedIn"><a
+            ng-class="{'nav-item':true,'black-bar':true,'hb1':hiSignin,'b1':!hiSignin}"
+             href="#!signin"   >Sign In</a></li> 
+
+        <li  ng-show="userSignedIn"><a 
+            ng-class="{'nav-item':true,'black-bar':true,'hb1':hiMenu,'b1':!hiMenu}"
+             href="#!hub"        >Menu</a></li> 
+
+        <li  ng-show="userSignedIn"><a
+            ng-class="{'nav-item':true,'black-bar':true,'hb1':hiUpdate,'b1':!hiUpdate}"
+              href="#!update"     >Update</a></li>    
+
+        <li  ng-show="userSignedIn"><a
+            ng-class="{'nav-item':true,'bg-dark':true,'hb1':hiClaim,'b1':!hiClaim}"
+             href="#!claim"     >Claim</a></li>
+
+        <li  ng-show="userSignedIn" ><a 
+            ng-class="{'nav-item':true,'black-bar':true,'hb1':hiHistory,'b1':!hiHistroy}"
+            href="#!history"   >History</a></li> 
+
+        <!-- style navigation links -->
+
+        <button  ng-show="showStyleLink"   
+            ng-class="{'nav-item':true,'black-bar':true,'hb1':false,'b1':true, style1: true}"
+            ng-click="onNextStyle()">
+            {{styleLinkValue}}
+        </button>
+
+        <button  ng-show="showColorLink"   
+            ng-class="{'nav-item':true,'black-bar':true,'hb1':false,'b1':true, color1: true}"
+            ng-click="onNextColor()">
+            {{colorLinkColor}}
+        </button> 
+
+        <!-- end of style navigation links --> 
+
+        <li  ng-show="userSignedIn" ><a class="nav-item b1 bg-dark"
+                                       ng-click="onSignOut()"  href="#">Sign Out</a></li>
+
+        <li  ng-show="!userSignedIn"><a
+           ng-class="{'nav-item':true,'black-bar':true,'hb1':hiInfo,'b1':!hiInfo}"
+            href="#!info"    >Info</a> </li> 
+
+        <li  ng-show="!userSignedIn"><a
+            ng-class="{'nav-item':true,'black-bar':true,'hb1':hiAbout,'b1':!hiAbout}"
+              href="#!about"    >About</a> </li>  
+
+        <li  ng-show="!userSignedIn"><a 
+             ng-class="{'nav-item':true,'black-bar':true,'hb1':hiAdmin,'b1':!hiAdmin}"
+             href="#!admin"    >Admin</a> </li>   
+
+        <li><span class="black-bar" style='color:burlywood; font-size: large'>
+            {{customerId + asterisk}} 
+            {{customerFirst + ' ' + customerLast}}
+       
+        </span></li>
+    </ul>
+    
+ </div>

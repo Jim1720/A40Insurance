@@ -1,0 +1,118 @@
+ 
+ <div class='container' ng-controller="adminActionController">
+
+ 
+    
+    <div class="row"><br></div>
+  
+    <div class="row">
+  
+                    <div class='col-md-2'></div>
+    
+                    <div class='col-md-4'> 
+    
+                            <h3 style="color:burlywood">Administrator Actions</h3> 
+                            
+                    </div>
+    
+    </div>
+  
+     
+    
+    <div class="row"><br></div>
+
+    <div class="row">  
+        
+        <div class='col-md-2'></div>
+  
+        <div class='col-md-4'>
+
+                <label for="curCustId" class="st1 control-label">Customer Id:</label> <br>
+                <input type='text' class="st1 form-control" ng-model="curCustId"><br> 
+
+        </div>
+
+    </div> 
+    
+    <div class="row"><br></div>
+            
+    <div class="row"> 
+  
+            <div class='col-md-2'></div>
+  
+            <div class='col-md-4'>  
+         
+
+                    <label for='newPassword' class="st1 control-label">New Password:</label> <br>
+                    <input type='password' class="st1 form-control" ng-model="newPassword"><br><br>
+
+                    <label for="newCustId" class="st1 control-label">New Customer Id:</label> <br>
+                    <input type='text' class="st1 form-control" ng-model="newCustId"><br>
+  
+            </div>
+
+            <div class='col-md-4'>       
+  
+                <label for='newPassword2' class="st1 control-label">Confirm Password:</label> <br>
+                <input type='password' class="st1 form-control" ng-model="newPassword2"><br><br>
+
+                <label for="newCustId2" class="st1 control-label">Confirm New Customer Id:</label> <br>
+                <input type='text' class="st1 form-control" ng-model="newCustId2"><br>
+
+        </div>
+    </div>
+    <div class="row"><br></div> 
+   
+    
+    <div class="row">  
+  
+  
+            <div class='col-md-2'></div>
+  
+            <div class='col-md-2'> 
+  
+                    <button type='button' class='st1 b1  btn btn-primary' ng-click="onCustomerList()">
+                                    List Customers
+                    </button> 
+            </div> 
+
+            <div class='col-md-2'> 
+  
+                <button type='button' class='st1 b1 btn btn-primary' ng-click="onResetPassword()">
+                                Reset Password
+                </button> 
+            </div> 
+
+            <div class='col-md-4'> 
+  
+                <button type='button' class='st1 b1 btn btn-primary' ng-click="onResetCustomerId()">
+                                Reset Customer Id
+                </button> 
+            </div> 
+  
+    </div>
+   
+    <div class="row"></div>
+
+    <div class="row"></div>
+
+
+  
+    <div class="row" style="margin-top: 25px;"> 
+  
+            <div class='col-md-2'></div>
+    
+            <div class='col-md-4'>  
+  
+                    <div style="color: burlywood;font-size:large;">
+                            {{message}}
+                    </div> 
+                    
+            </div>
+  
+    </div>
+   
+  
+  </div> 
+  
+  
