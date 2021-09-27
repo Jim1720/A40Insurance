@@ -4,15 +4,18 @@
 app.controller('classicController', ['$scope', function($scope) { 
            
      
-
-      var myCarousel = document.getElementById("theCarousel");
-      var carousel = new bootstrap.Carousel(myCarousel) 
-
-      function rideTheCarousel() { 
+      // ref:  get carousel to slide. 
+        
+      // https://stackoverflow.com/questions/66506091/bootstrap-carousel-does-not-auto-slide-when-routing-back-in-angular
+      // carousel was not starting until page refreshed.
  
-        carousel.next(); 
 
-      } 
+      var hiddenElement = document.getElementById("carousel"); 
+
+      setInterval(() => {
+         hiddenElement.click();
+      }, 10000);
+
 
 }]);
 
