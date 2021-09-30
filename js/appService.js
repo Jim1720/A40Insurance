@@ -10,7 +10,7 @@ app.service('appService', function() {
     this.getAPIUrl = function() {
   
 
-        var url =  "https://project20a45serverjsb09142020a1.azurewebsites.net/";
+        var url =  "linktoapi";
  
         return url;
          
