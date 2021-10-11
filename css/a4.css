@@ -1,5 +1,6 @@
 
-   body { background-color: black; color: white;  }
+   body { background-color: black; color: white;  } 
+
 
    .blue { color: var(--adj-color); }
 
@@ -142,3 +143,6 @@ li  { display: inline; }
 .mover { transition: style 1s; }
 
 .message { color: white; font-size: larger; }
+
+
+.r1 { border-radius: 25px; }
