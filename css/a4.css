@@ -146,3 +146,114 @@ li  { display: inline; }
 
 
 .r1 { border-radius: 25px; }
+
+/* history */
+
+.f { font-family: arial; font-size: large; }
+
+.white { color: white }
+
+.dodgerblue { color: dodgerblue }
+
+.burleywood { color: burlywood }
+
+.aqua { color: aqua }
+
+.spacer { margin-top: 25px }
+
+.bspacer { margin-left: 25px }
+
+
+.g1menu {
+   color: aqua;
+   border-color: white;
+   margin-left: 20px;
+}
+
+.g2pay {
+   color: red;
+   border-color: white;
+   margin-left: 20px;
+}
+
+.g3adjust {
+   color: yellow;
+   border-color: white;
+   margin-left: 20px;
+}
+
+.g4stay {
+   color: lightgreen;
+   border-color: white;
+   margin-left: 20px;
+}
+
+
+.g4 {
+   color: lightgreen;
+   border-color: white;
+   margin-left: 20px;
+}
+
+
+.g4focus {
+   color: burlywood;
+   border-color: white;
+   margin-left: 20px;
+}
+
+
+.g4top {
+   color: lightgreen;
+   border-color: white;
+   margin-left: 20px;
+}
+
+
+.g4mid {
+   color: burlywood;
+   border-color: white;
+   margin-left: 20px;
+}
+
+
+.g4bot {
+   color: lightcoral;
+   border-color: white;
+   margin-left: 20px;
+}
+
+
+.g4focus {
+   color: burlywood;
+   border-color: white;
+   margin-left: 20px;
+}
+
+
+
+.g5new {
+   color: aqua;
+   border-color: white;
+   margin-left: 20px;
+}
+
+
+
+
+.g5act1 {
+   color: burlywood;
+   border-color: white;
+   margin-left: 20px;
+}
+
+
+.g5act2 {
+   color: burlywood;
+   border-color: white;
+   margin-left: 20px;
+}
+
+html {
+   scroll-behavior: smooth;
+}

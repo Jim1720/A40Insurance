@@ -6,9 +6,10 @@ app.controller('claimController', [ '$http','$scope', '$location', 'customerServ
                 'utilityService',
                 'tokenService', 
                 'styleFactoryService',
+                'historyService',
                function($http, $scope, $location, customerService,
                   claimService, appService, dateService, utilityService, 
-                  tokenService, styleFactoryService) { 
+                  tokenService, styleFactoryService, historyService) { 
  
 //$scope.message = "reg controller working."; 
 //console.log('claim controler');
@@ -39,11 +40,11 @@ $scope.typeServices = [];
 $scope.serviceEntryObject; // drop down model.
 $scope.defaultValue = "";
 
-var control = this; 
+var control = this;   
+ 
 	
 control.$onInit = function() {
- 
-    debugger;
+  
     // verify proper customer login
     if(appService.isCustomerLoggedIn() == false) {
         $location.path('/start');
@@ -85,8 +86,7 @@ control.$onInit = function() {
          var userColor = screenStyleObject.userColor;
          var headerColor = screenStyleObject.headerColor;
          var labelColor = screenStyleObject.labelColor;
-         var messageColor = screenStyleObject.messageColor;
-         debugger;
+         var messageColor = screenStyleObject.messageColor; 
          
          if(internalClass === "Solid") {
             $scope.setColors(userColor, headerColor, labelColor, messageColor);
@@ -116,8 +116,7 @@ $scope.setColors = function(userColor, headerColor, labelColor, messageColor) {
     //marginLeft = (onClaimScreen) ? claimMarginLeft : registerMarginLeft;
     // use window.onload to make sure parsing complete for 
     // this to work.
-
-    debugger;
+ 
     
     let root = document.documentElement; 
     root.style.setProperty('--user-color', userColor);
@@ -188,8 +187,7 @@ $scope.fileClaim = function () {
    $scope.messages = [];
 
    $scope.claim = {};
-
-   debugger;
+ 
    $scope.claim.ClaimType = $scope.selectedType; // fixed 2.24
    $scope.claim.ClaimIdNumber = this.getClaimIdNumber(); 
    $scope.claim.ClaimDescription = $scope.ClaimDescription;
@@ -215,8 +213,7 @@ $scope.fileClaim = function () {
    $scope.claim.AdjustedClaimId = "";
    $scope.claim.ClaimStatus = "Entered";
 
-   // 7.24 relese 2
-   debugger; 
+   // 7.24 relese 2 
    $scope.claim.CoveredAmount = "0.0";
    $scope.claim.BalanceOwed = "0.0";
    $scope.claim.CustomerPlan = this.custPlan;
@@ -242,19 +239,16 @@ $scope.fileClaim = function () {
       return;
    } 
 
-  // set service on object selected from service dropdown box. 
-  debugger;
+  // set service on object selected from service dropdown box.  
   var item = $scope.serviceEntryObject['ServiceName'];
   $scope.claim.Service =  item.toString().trim(); 
 
  
-   this.clearByType(); 
-   debugger;
+   this.clearByType();  
    if($scope.adjustment) {
       this.setAdjustingFields();
    }
-
-   debugger;
+ 
    $scope.calcualateTotalCharge(); 
   
 
@@ -272,8 +266,7 @@ $scope.calcualateTotalCharge = function() {
     // get service cost 
 
     // var serviceUsed = $scope.typeServices.filter(ts => ts["ServiceName"] === $scope.claim.Service); 
-    //  ie 11
-    debugger;
+    //  ie 11 
     var cost = 0.0; 
     var item = $scope.serviceEntryObject['ServiceName'];
     var claimService = item.toString().trim();
@@ -300,21 +293,17 @@ $scope.calcualateTotalCharge = function() {
 }  
 
 $scope.getPlanPercent = function(planName, cost , closureThis) {
-
-    debugger;
+ 
   //  console.log('get Plans - ');
     var planName = planName.trim();
-
-    debugger; 
+ 
     try {
-
-        debugger;
+ 
         var url = appService.getAPIUrl();
         var readPlans = 'readPlans';
         $http.get(url + readPlans)  
         .then(function(data,status,headers,config) {
-
-            debugger;   
+ 
             var plans = [];
             plans = data.data;  
             // find percent matching plan name
@@ -353,8 +342,7 @@ $scope.getPlanPercent = function(planName, cost , closureThis) {
 } 
 
 $scope.finishCalculation = function(percent,cost,closureThis) {
-
-    debugger;
+ 
      // submitted charge is the 'cost' 
      closureThis.claim.TotalCharge = cost.toString(); 
      // find how much is covered
@@ -373,8 +361,7 @@ $scope.finishCalculation = function(percent,cost,closureThis) {
 }
 
 
-$scope.showDateOnScreen = function(value)  {
-    debugger;
+$scope.showDateOnScreen = function(value)  { 
    // format date on screen from database.
    // 2019-01-01 to 01012019. 
    // blank if y is 1753 or 1900.
@@ -415,8 +402,7 @@ $scope.setAdjustingFields = function () {
 $scope.getListOfAllServices = function (ClaimType) {
 
     try {
-
-        debugger;
+ 
  
         var url = appService.getAPIUrl();
         $http.get(url + 'readServices')
@@ -506,6 +492,7 @@ $scope.filterServicesByClaimType = function(PassedClaimType) {
     } 
 
 }
+ 
 
 $scope.stampAdjustedClaim = function() {
 
@@ -519,15 +506,15 @@ $scope.stampAdjustedClaim = function() {
 
 
     try {
-
-       debugger;
-
-       var closureThis = this;
+ 
+       var closureThis = this; 
 
        var url = appService.getAPIUrl();
        $http.put(url + 'stampAdjustedClaim/',parm)
        .then(function(data,status,headers,config) {
 
+          debugger;
+          
           // print success message and transfer  
           var a = closureThis.adjustedId.trim();
           var b = $scope.claim.ClaimIdNumber.trim();
@@ -537,6 +524,31 @@ $scope.stampAdjustedClaim = function() {
           // clear claim data in calaim service so that, next new claim
           // will have empty screen. 
           claimService.setClaim(null);
+ 
+
+          // set focused claim    
+          if(appService.usingFocus() && historyService.isFocusOn()) {  
+
+                historyService.setFocusedClaimId(b);
+          }
+          
+          
+
+          setActionObject = { action: 'Adjustment', claimId: b }; 
+
+          // set action for history if used 
+          if(appService.usingActions()) { 
+              
+             historyService.setAction(setActionObject); 
+          }
+ 
+          // if stay button on and using stay go back to history.  
+          if(appService.usingStay() && historyService.isStayOn())
+          {
+              $location.path('/history');
+              return;
+          } 
+
           $location.path('/hub');
  
     }, 
@@ -577,8 +589,7 @@ $scope.clearByType = function() {
  
 
 $scope.claimType = function (claimType) {
-
-    debugger;
+ 
     // buttons on screen set these fields.
     // called on init to set to medical.
     $scope.showMedical = (claimType === "Medical"); 
@@ -604,8 +615,7 @@ $scope.claimType = function (claimType) {
 
 }
 
-$scope.getCurrentDate = function () { 
-   debugger;
+$scope.getCurrentDate = function () {  
    var d = new Date();
    var today = (d.getMonth() + 1 ) + '/' + d.getDate() + '/' + d.getFullYear(); 
    return today; 
@@ -623,8 +633,7 @@ $scope.getClaimIdNumber = function () {
 $scope.editClaim = function () {
  
       $scope.message = '';
-
-      debugger;
+ 
       var msg = []; 
       var concat = '';  
 
@@ -681,15 +690,15 @@ $scope.editClaim = function () {
       }
 
      
- 
-      debugger;
+    debugger;
      
        var dateParm = {
         screen: "claim",
         input: $scope.claim.DateService.trim(),
         valid: false,
         message: "",
-        formatted: "" 
+        formatted: "",
+        adjustment: $scope.adjustment
         }; 
 
     dateService.editDate(dateParm);
@@ -722,7 +731,8 @@ $scope.editClaim = function () {
                     input: $scope.claim.DateConfine.trim(),
                     valid: false,
                     message: "",
-                    formatted: "" 
+                    formatted: "",
+                    adjustment: $scope.adjustment
                 }; 
             
                 dateService.editDate(dateParm);
@@ -748,7 +758,8 @@ $scope.editClaim = function () {
                     input: $scope.claim.DateRelease.trim(),
                     valid: false,
                     message: "",
-                    formatted: "" 
+                    formatted: "",
+                    adjustment: $scope.adjustment 
                 }; 
             
                 dateService.editDate(dateParm);
@@ -790,8 +801,7 @@ $scope.editClaim = function () {
         } 
     
     
- 
-      debugger;
+  
 
       $scope.message = "";
       var prefix = " *";
@@ -817,8 +827,7 @@ $scope.editClaim = function () {
 
 $scope.addClaim = function () {
 
-      // testing undef 
-      debugger;
+      // testing undef  
        if($scope.claim.CoveredAmount == undefined) {
           $scope.claim.CoveredAmount = "0.0";
       }
@@ -829,8 +838,7 @@ $scope.addClaim = function () {
       var closureThis = this;
 
       try {
-
-         debugger;
+ 
 
          var url = appService.getAPIUrl();
          $http.post(url + 'addClaim/',$scope.claim)
@@ -856,15 +864,41 @@ $scope.addClaim = function () {
             // set claim added message for update if we have adjustment
             // message will be replaced for that. if adjustment stamp adj will set it.
 
-            
-            if($scope.adjustment  == false) {
-               var a = $scope.claim.ClaimIdNumber;
-               // ie 11 var message = `Claim ${a} has been filed.`;
-               var message = "Claim " + a + " has been filed.";
-               claimService.setPendingMessage(message);
+            if($scope.adjustment === true) {
+
+                return; 
+            } 
+             
+            var a = $scope.claim.ClaimIdNumber;
+            // ie 11 var message = `Claim ${a} has been filed.`;
+            var message = "Claim " + a + " has been filed.";
+            claimService.setPendingMessage(message); 
+
+            // set focused claim    
+
+            var claimId = a.trim();
+
+            if(appService.usingFocus() && historyService.isFocusOn()) {  
+
+               historyService.setFocusedClaimId(claimId); 
+            } 
+
+            setActionObject = { action: 'New', claimId: claimId }; 
+
+            // set action for history if used 
+            if(appService.usingActions()) { 
+                
+                historyService.setAction(setActionObject); 
             }
 
-            $location.path('hub');
+            // if stay button on and using stay go back to history.  
+            if(appService.usingStay() && historyService.isStayOn())
+            {
+                $location.path('/history');
+                return;
+            } 
+
+            $location.path('/hub');  
 
       }, 
       function(data,status,headers,config) {

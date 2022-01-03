@@ -52,7 +52,7 @@ app.service('dateService', function() {
              return;
         }
   
-        if(!this.editYear(yy,dateParm.screen)) {
+        if(!this.editYear(yy,dateParm.screen,dateParm.adjustment)) {
              dateParm.valid = false;
              dateParm.message = "date year invalid";
              return;
@@ -156,7 +156,7 @@ app.service('dateService', function() {
         return dayValid;
     }
 
-    this.editYear = function(yy,fromScreen)  {
+    this.editYear = function(yy,fromScreen,adjustment)  {
 
         var year = parseInt(yy);
         // reasonable check only.
@@ -165,12 +165,28 @@ app.service('dateService', function() {
         if(!validLength) { return false; }
         const centuryOmitted = 2;
 
+        var adjustmentYearRange = 0;
+        var allowedAdjustmentYearrange = 5;
+        if(adjustment === true) {
+            // what is this:
+            // allow for adjusted claims to be within 5 years so
+            // service, confine and release dates pass edits.
+            adjustmentYearRange = allowedAdjustmentYearrange; // rel 3 date fix
+        }
+
+
         if(len === centuryOmitted) {
 
             // registration can be any year since it is birth date
             // claim dates can be +1/-1 current year only
             // correspond with screen input...
-            if(fromScreen === "claim" && (year < 19 || year > 21))
+            var currentYear = this.currentYear; // rel 3 date fix
+            var lastYear = currentYear - 1; // rel 3 date fix
+            var nextYear = currentYear + 1; // rel 3 date fix
+            lastYear -= adjustmentYearRange; // rel 3 date fix
+            var convertBackTo4Digits = 2000;
+            year += convertBackTo4Digits;
+            if(fromScreen === "claim" && (year < lastYear || year > nextYear)) // rel 3 date fix
             {
               return false;
             }
@@ -185,6 +201,7 @@ app.service('dateService', function() {
             var currentYear = this.currentYear;
             var lastYear = currentYear - 1;
             var nextYear = currentYear + 1;
+            lastYear -= adjustmentYearRange; // rel 3 date fix
             // procedure dates
             if(fromScreen === "claim" && (year < lastYear || year > nextYear))
             { 
