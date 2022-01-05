@@ -11,11 +11,226 @@
     
     <h2 class='starttitle'>Claim History Screen</h2>  
     
-           <a href="#!hub"  style='margin-left: 30px'    class="btn btn-primary st1 b1"> Menu </a>  
+    <div id="claimData" ng-repeat="claim in claims track by $index"> 
+               
+                    <div id="top" ng-if="usingNav && $index == 0"></div>
+                    <div id="mid" ng-if="usingNav && $index + 1 == halfCount"></div> 
+                    <div id="bot" ng-if="usingNav && $index + 1 == totalCount"></div>  
 
-           <div class="row" style="margin-top:20px">
+                    <div id="focus" ng-if="usingFocus && claim.claimIsFocused" ></div> 
+                    <div id="act1"  ng-if="usingActions && claim.claimIsAct1"></div>
+                    <div id="act2"  ng-if="usingActions && claim.claimIsAct2"></div> 
+
+                    <div class="row spacer">
+                        <div class="col-md-3 white f">Claim Identification</div>
+                        <div class="col-md-3 white f">Type</div>
+                        <div class="col-md-3 white f">Status</div> 
+                        <div class="col-md-3 white f">Sequence</div> 
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-3 dodgerblue f">{{claim.ClaimIdNumber}}</div>  
+                        <div class="col-md-3 dodgerblue f">{{claim.ClaimType}}</div>  
+                        <div class="col-md-3 dodgerblue f">{{claim.ClaimStatus}}</div> 
+                        <div class="col-md-3 dodgerblue f">{{$index+1}}</div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-3 white f">Patient</div>
+                        <div class="col-md-3 white f">Service</div>
+                        <div class="col-md-3 white f">Service Date</div>
+                        <div class="col-md-3 white f">Description</div> 
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-3 burleywood f">{{claim.PatientFirst}}&nbsp;&nbsp;
+                            {{claim.PatientLast}}</div> 
+                        <div class="col-md-3 dodgerblue f">{{claim.Service}}</div> 
+                        <div class="col-md-3 dodgerblue f">{{claim.DateService}}</div> 
+                        <div class="col-md-3 dodgerblue f">{{claim.ClaimDescription}} </div>  
+                    </div> 
+
+                    
+                    <div class="row">
+                        <div class="col-md-3 white f">Diagnosis</div>
+                        <div class="col-md-3 white f">Procedure</div>
+                        <div class="col-md-3 white f">Physician</div>
+                        <div class="col-md-3 white f">Clinic</div> 
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3 dodgerblue f">{{claim.Diagnosis1}}</div> 
+                        <div class="col-md-3 dodgerblue f">{{claim.Procedure1}}</div> 
+                        <div class="col-md-3 dodgerblue f">{{claim.Physician}}</div> 
+                        <div class="col-md-3 dodgerblue f">{{claim.Clinic}}</div>  
+                    </div> 
+
+                    <div class="row">
+                        <div class="col-md-3 white f">Plan</div>
+                        <div class="col-md-3 white f">Total Charge</div>
+                        <div class="col-md-3 white f">Covered Amount</div>
+                        <div class="col-md-3 white f">Amount Owed</div> 
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3 aqua f">{{claim.PlanId}}</div> 
+                        <div class="col-md-3 dodgerblue f">${{claim.TotalCharge}}</div> 
+                        <div class="col-md-3 dodgerblue f">${{claim.CoveredAmount}}</div> 
+                        <div class="col-md-3 dodgerblue f"> ${{claim.BalanceOwed}}</div>  
+                    </div> 
+
+                    <div class="row" ng-if="claim.ClaimType=='m'"> 
+                        <div ng-show="claim.DateConfine!=''" class="col-md-3 white f">Date Confined</div>
+                        <div ng-show="claim.DateRelease!=''" class="col-md-3 white f">Date Released</div> 
+                    </div>
+                    <div class="row" ng-if="claim.ClaimType=='m'"> 
+                        <div ng-show="claim.DateConfine!=''" class="col-md-3 dodgerblue f"> ${{claim.CoveredAmount}}</div> 
+                        <div ng-show="claim.DateRelease!=''" class="col-md-3 dodgerblue f"> ${{claim.BalanceOwed}}</div>  
+                    </div>
+
+                    <div class="row" ng-if="claim.ClaimType=='d'"> 
+                        <div class="col-md-3 white f">Tooth Number:</div>
+                    </div>
+
+                    <div class="row" ng-if="claim.ClaimType=='d'"> 
+                        <div class="col-md-3 dodgerblue f">{{claim.ToothNumber}}</div>
+                    </div>
+
+                    <div class="row" ng-if="claim.ClaimType=='v'"> 
+                        <div class="col-md-3 white f">Eyeware:</div>
+                    </div>
+
+                    <div class="row" ng-if="claim.ClaimType=='v'"> 
+                        <div class="col-md-3 dodgerblue f">{{claim.Eyeware}}</div>
+                    </div>
+
+                    
+                    <div class="row" ng-if="claim.ClaimType=='x'"> 
+                        <div class="col-md-3 white f">Drug Name:</div>
+                    </div>
+
+                    <div class="row" ng-if="claim.ClaimType=='x'"> 
+                        <div class="col-md-3 dodgerblue f">{{claim.DrugName}}</div>
+                    </div> 
+                    
+                    <div ng-if="claim.ClaimStatus.trim()==='Adjusted'" class="row">
+                        <div class="col-md-3 white f">Adjusted By:</div>
+                        <div class="col-md-3 white f">Date:</div> 
+                    </div>
+
+                    <div ng-if="claim.ClaimStatus.trim()==='Adjusted'" class="row">
+                        <div class="col-md-3 burleywood f">{{claim.AdjustingClaimId}}</div> 
+                        <div class="col-md-3 dodgerblue f">{{claim.AdjustedDate}}</div>  
+                    </div> 
+
+                    <div ng-if="claim.ClaimStatus.trim()==='Adjustment'" class="row">
+                        <div class="col-md-3 white f">Adjustment For:</div> 
+                    </div>
+
+                    <div  ng-if="claim.ClaimStatus.trim()==='Adjustment'" class="row">
+                        <div class="col-md-3 burleywood f">{{claim.AdjustedClaimId}}</div> 
+                    </div>  
+
+                    <div ng-if="claim.ClaimStatus.trim()==='Paid'" class="row">
+                        <div class="col-md-3 white f">Payment Amount:</div>
+                        <div class="col-md-3 white f">Date:</div> 
+                    </div>
+
+                    <div ng-if="claim.ClaimStatus.trim()==='Paid'" class="row">
+                        <div class="col-md-3 burleywood f">${{claim.PaymentAmount}}</div> 
+                        <div class="col-md-3 dodgerblue f">{{claim.PaymentDate}}</div>  
+                    </div> 
+
+                    <div ng-if="payStay.claimIdNumber===claim.ClaimIdNumber" class="row">
+                        <div class="col-md-3 white f">Payment Amount:</div>
+                        <div class="col-md-3 white f">Date:</div> 
+                    </div>
+
+                    <div ng-if="payStay.claimIdNumber===claim.claimIdNumber" class="row">
+                        <div class="col-md-3 burleywood f">${{payStay.PaymentAmount}}</div> 
+                        <div class="col-md-3 dodgerblue f">{{payStay.PaymentDate}}</div>  
+                    </div> 
+
+                    <div class="row spacer">
+
+                        <a href="#!hub"  class="g1menu btn btn-primary st1 b1 bspacer"> Menu </a> 
+
+                        <button ng-if="usingStay"
+                                    type="button" 
+                                    class="g4stay btn btn-primary st1 b1 bspacer"
+                                    ng-click="toggleStay()">
+                                    {{stayLiteral}}
+                        </button>
+
+                        <button ng-if="usingFocus"
+                                    type="button" 
+                                    class="g4focus btn btn-primary st1 b1 bspacer"
+                                    ng-click="toggleFocus()">
+                                    {{focusLiteral}}
+                       </button>
+                        
+                        <a href="#!claim"  class="g5new btn btn-primary st1 b1 bspacer"> Claim </a>
+
+                        <button ng-if="claim.ClaimStatus.trim()!=='Adjusted'
+                                         && 
+                                         claim.ClaimStatus.trim()!=='Paid'" 
+                                type="button" 
+                                class="g3adjust btn btn-primary st1 b1 bspacer"
+                                ng-click="adjustClaim($index)">
+                                Adjust Claim
+                    </button>
+
+                    <button ng-if="claim.ClaimStatus.trim()!=='Adjusted'
+                                     && 
+                                     claim.ClaimStatus.trim()!=='Paid'" 
+                            type="button" 
+                            id="payButton"
+                            class="g2pay btn btn-primary st1 b1 bspacer"
+                            ng-click="makeClaimPayment($index)"> 
+                            Pay Claim
+                   </button>
+
+                   <button ng-if="usingNav"
+                           type="button" 
+                           class="g4top btn btn-primary st1 b1 bspacer"
+                           ng-click="navTop()">
+                           Top
+                   </button>
+
+                   <button ng-if="usingNav"
+                           type="button" 
+                           class="g4mid btn btn-primary st1 b1 bspacer"
+                           ng-click="navMid()">
+                           Mid
+                  </button>
+
+                   <button ng-if="usingNav" 
+                           class="g4bot btn btn-primary st1 b1 bspacer"
+                           ng-click="navBot()">
+                           Bot
+                  </button>
+
+                   <button ng-if="usingActions && action1ButtonUsed" 
+                           type="button"
+                           class="g5act1 btn btn-primary st1 b1 bspacer"
+                           ng-click="navAct1()">
+                           {{action1Lit}}
+                  </button>
+
+                   <button ng-if="usingActions && action2ButtonUsed" 
+                           type="button"
+                           class="g5act2 btn btn-primary st1 b1 bspacer"
+                           ng-click="navAct2()">
+                           {{action2Lit}}
+                   </button> 
+
+               </div>
+                   
+
+                </div> <!-- end claim data -->
                  
-                <table class="table">
+                <!-- table class="table">
                         <thead class="thead-inverse">
                             <tr>
                                 <th>Patient</th>
@@ -117,12 +332,11 @@
                                 </tr>
 
                         </tbody>
-                        </table>
-
-           </div>
+                        </table-->
+ 
 
                    
-            <div style="color:lawngreen" class="row" form-control>
+            <div  class="row burleywood f" form-control>
                    <br>{{message}} 
             </div>  
     

@@ -1,9 +1,9 @@
 
 app.controller('historyController', [ '$http','$scope', '$location' , '$route', 'customerService',  
-    'claimService', 'appService', 'historyService',  
+    'claimService', 'appService', 'historyService', 'tokenService', 
 
 	function($http, $scope, $location, $route, customerService, claimService, appService,
-             historyService) { 
+             historyService, tokenService) { 
  
     // $route needed for $route.reload after focus=on;pay claim to refresh screen.
       
@@ -16,6 +16,24 @@ app.controller('historyController', [ '$http','$scope', '$location' , '$route', 
     $scope.focusdClaimIsSet = false;
     $scope.act1ClaimId = "";
     $scope.act2ClaimId = "";
+
+    // immediate update selected paid claim line before screen refresh.
+    $scope.payStay = { claimIdNumber: '', paymentAmount: 0, PaymentDate: ''};
+
+    // these may not be used ...
+    $scope.payLine1 = ` 
+
+        <div id='payLine1' class='row'>
+        <div class='col-md-3 white f'>Payment Amount:</div>
+        <div class='col-md-3 white f'>Date:</div> 
+        </div>`;
+
+    $scope.payLine2 = ` 
+
+        <div id="payLine2">
+            <div class="col-md-3 burleywood f">$2</div> 
+            <div class="col-md-3 dodgerblue f">{{claim.PaymentDate}}</div>  
+        </div> `;
 
     // insure pay focus has new data before refresh of route data ... 
 
@@ -212,6 +230,119 @@ app.controller('historyController', [ '$http','$scope', '$location' , '$route', 
     } 
 
 
+    $scope.makeClaimPayment = function(index) {
+
+        // rewrite bypass claim service 
+
+        var claim = $scope.claims[index];
+        var claimId = claim.ClaimIdNumber.trim(); 
+
+        // moved here to set pay stay fields was in procesClaim.
+        var paymentAmount = $scope.promptUserForAmount();
+        if(paymentAmount === null) {
+
+            return null;; // bad amount return to history
+        }
+
+
+        var today = this.getCurrentDate();
+ 
+        var defaultPlan = "";
+        var serverAction = "pay";
+
+        // set up parameters
+        var claimStatusObject = {claimIdNumber: claimId, 
+                                 action: serverAction,
+                                 date: today, 
+                                 amount: paymentAmount, 
+                                 plan: defaultPlan};
+        debugger;
+        // add token 
+        claimStatusObject['_csrf'] = tokenService.getToken(); 
+
+        $scope.makePaymentUpdateRequest(claimStatusObject);
+
+    }
+ 
+
+        
+     $scope.makePaymentUpdateRequest = function(claimStatusObject)  {
+
+        var closureThis = this;
+
+        try {
+
+            debugger;
+   
+            var url = appService.getAPIUrl();
+            $http.put(url + 'setClaimStatus/',claimStatusObject)
+            .then(function(data,status,headers,config) {
+   
+               // print success message and transfer 
+                
+              // send message for user display in update screen.
+               var a = claimStatusObject.claimIdNumber.toString();
+               var b = claimStatusObject.amount.toString();
+               // ie 11 var message = `Claim ${a} paid with $${b}.`;
+               var message = "Claim " + a + " paid with $" + b + ".";
+               claimService.setPendingMessage(message);  
+
+               $scope.postPaymentUpdateProcessing(a);
+   
+            }, 
+            function(data,status,headers,config) {
+    
+                console.log("pay fails");
+                console.log("payment action fails: status is: " + status.toString());
+                var failMessage = "Payment action fails." + status.toString();
+                closureThis.setPendingMessage(failMessage);
+                $location.path('hub');
+            });
+   
+        }
+        catch(err)
+        {
+                
+                console.log("error encountered claim payment process:" + err.message);
+                var failMessage = "Payment action fails. - " + err.message;
+                this.setPendingMessage(failMessage);
+                $location.path('update');
+            
+        } 
+    }
+
+    $scope.postPaymentUpdateProcessing = function(claimId) {
+
+         // set focused claim    
+         if(appService.usingFocus() && historyService.isFocusOn()) {  
+
+            historyService.setFocusedClaimId(claimId);
+        } 
+       
+        // set action for history if used
+        var usingActions = appService.usingActions();
+        if(usingActions) { 
+ 
+            setActionObject = { action: 'Payment', claimId: claimId }; 
+            historyService.setAction(setActionObject); 
+        } 
+
+        $scope.setPaymentLine();
+
+        // if stay button on and using stay go back to history.  
+        if(appService.usingStay() && historyService.isStayOn())
+        { 
+            return; // stay on history
+        }  
+
+        $location.path('/hub'); 
+        return;
+
+
+    }
+
+    // depricated see 'makeClaimPayment' above ; so that mysterious timing issue
+    // my be solved by not using the 'claimService'.
     $scope.payClaim = function(index) {
 
         // process history pay button.
@@ -234,16 +365,20 @@ app.controller('historyController', [ '$http','$scope', '$location' , '$route', 
             console.log("error in pay processing status code: " + result);
             return; // bad result do nothing message was issued to user
         }
-        // good result go to update 
+        // good result go to update  
+        
+        // show results on screen immediately.
+        $scope.setPaymentLine(claimId, paymentAmount, today);
+
  
         var message = "Claim " + claimId + " paid.";
         claimService.setPendingMessage(message);   
 
-        /* set focused claim    
+        // set focused claim    
         if(appService.usingFocus() && historyService.isFocusOn()) {  
 
             historyService.setFocusedClaimId(claimId);
-        } */
+        } 
        
         // set action for history if used
         var usingActions = appService.usingActions();
@@ -254,16 +389,25 @@ app.controller('historyController', [ '$http','$scope', '$location' , '$route', 
         } 
 
         // if stay button on and using stay go back to history.  
-        /* if(appService.usingStay() && historyService.isStayOn())
-        {
-            $location.path('/redirecthistory');
+        if(appService.usingStay() && historyService.isStayOn())
+        { 
             return;
-        } */ 
+        }  
 
         $location.path('/hub'); 
         return;
        
 
+    }
+
+    $scope.setPaymentLine = function(claimId, paymentAmount, paymentDate)
+    {
+        // immediately always reflect results on claim screen
+        // possibly before async function to read claims runs.
+        $scope.payStay.claimIdNumber = claimId;
+        $scope.payStay.paymentAmount = paymentAmount;
+        $scope.payStay.PaymentDate = paymentDate;
+        $route.reload();
     }
 
     $scope.promptUserForAmount = function() {
