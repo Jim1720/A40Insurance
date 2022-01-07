@@ -341,65 +341,7 @@ app.controller('historyController', [ '$http','$scope', '$location' , '$route', 
 
     }
 
-    // depricated see 'makeClaimPayment' above ; so that mysterious timing issue
-    // my be solved by not using the 'claimService'.
-    $scope.payClaim = function(index) {
-
-        // process history pay button.
-
-        var action = "PayClaimWithUserInput";
-        var claim = $scope.claims[index];
-        var claimId = claim.ClaimIdNumber.trim(); 
-
-        // moved here to set pay stay fields was in procesClaim.
-        var paymentAmount = $scope.promptUserForAmount();
-        if(paymentAmount === null) {
-            return null;; // bad amount return to history
-        }
-        var today = this.getCurrentDate();
- 
-
-        var result = claimService.processClaim(action, claimId, paymentAmount, today); 
-
-        if(result === null) {
-            console.log("error in pay processing status code: " + result);
-            return; // bad result do nothing message was issued to user
-        }
-        // good result go to update  
-        
-        // show results on screen immediately.
-        $scope.setPaymentLine(claimId, paymentAmount, today);
-
- 
-        var message = "Claim " + claimId + " paid.";
-        claimService.setPendingMessage(message);   
-
-        // set focused claim    
-        if(appService.usingFocus() && historyService.isFocusOn()) {  
-
-            historyService.setFocusedClaimId(claimId);
-        } 
-       
-        // set action for history if used
-        var usingActions = appService.usingActions();
-        if(usingActions) { 
- 
-            setActionObject = { action: 'Payment', claimId: claimId }; 
-            historyService.setAction(setActionObject); 
-        } 
-
-        // if stay button on and using stay go back to history.  
-        if(appService.usingStay() && historyService.isStayOn())
-        { 
-            return;
-        }  
-
-        $location.path('/hub'); 
-        return;
-       
-
-    }
-
+   
     $scope.setPaymentLine = function(claimId, paymentAmount, paymentDate)
     {
         // immediately always reflect results on claim screen
