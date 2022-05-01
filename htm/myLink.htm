@@ -1,6 +1,6 @@
- 
-<div>
-    <ul class="black-bar navbar   b3-navbar">  
+     
+    <ul class="navbar navbar-dark bg-dark white-bottom-line">
+          
 
         <!-- myLink directive has scope:false to use parent/menuController scope..
              the signin is 2nd level decendent so it has to use $parent.$parent as it
@@ -17,50 +17,50 @@
         
         <!-- [ngClass]="{nav-item:true,bg-dark:true,hb1:!hiClassic,b1:hiClassic}" -->
 
-        <li  class="navbar-brand" style="color:burlywood">A40Insurance</li>  
+        <li  class="aa navbar-brand" style="color:burlywood">A40Insurance</li>  
 
         <li  ng-show="!userSignedIn"><a
-            ng-class="{'nav-item':true,'black-bar':true,'hb1':hiStart,'b1':!hiStart}" 
+            ng-class="{'nav-item':true,'hb1':hiStart,'b1':!hiStart, 'cc':true}" 
               href="#!start"    >Start</a></li>
 
         <li  ng-show="!userSignedIn"><a 
-             ng-class="{'nav-item':true,'black-bar':true,'hb1':hiClassic,'b1':!hiClassic}" 
+             ng-class="{'nav-item':true,'hb1':hiClassic,'b1':!hiClassic,'cc':true}" 
              href="#!classic"   >Classic</a></li>
  
         <li  ng-show="!userSignedIn"> <a
-             ng-class="{'nav-item':true,'black-br':true,'hb1':hiRegister,'b1':!hiRegister}"
+             ng-class="{'nav-item':true,'hb1':hiRegister,'b1':!hiRegister,'cc':true}"
              href="#!register"  >Register</a></li>
 
         <li  ng-show="!userSignedIn"><a
-            ng-class="{'nav-item':true,'black-bar':true,'hb1':hiSignin,'b1':!hiSignin}"
+            ng-class="{'nav-item':true,'hb1':hiSignin,'b1':!hiSignin,'cc':true}"
              href="#!signin"   >Sign In</a></li> 
 
         <li  ng-show="userSignedIn"><a 
-            ng-class="{'nav-item':true,'black-bar':true,'hb1':hiMenu,'b1':!hiMenu}"
+            ng-class="{'nav-item':true, 'hb1':hiMenu,'b1':!hiMenu,'cc':true}"
              href="#!hub"        >Menu</a></li> 
 
         <li  ng-show="userSignedIn"><a
-            ng-class="{'nav-item':true,'black-bar':true,'hb1':hiUpdate,'b1':!hiUpdate}"
+            ng-class="{'nav-item':true,'hb1':hiUpdate,'b1':!hiUpdate,'cc':true}"
               href="#!update"     >Update</a></li>    
 
         <li  ng-show="userSignedIn"><a
-            ng-class="{'nav-item':true,'bg-dark':true,'hb1':hiClaim,'b1':!hiClaim}"
+            ng-class="{'nav-item':true,'hb1':hiClaim,'b1':!hiClaim,'cc':true}"
              href="#!claim"     >Claim</a></li>
 
         <li  ng-show="userSignedIn" ><a 
-            ng-class="{'nav-item':true,'black-bar':true,'hb1':hiHistory,'b1':!hiHistroy}"
+            ng-class="{'nav-item':true,'hb1':hiHistory,'b1':!hiHistroy,'cc':true}"
             href="#!history"   >History</a></li> 
 
         <!-- style navigation links -->
 
         <button  ng-show="showStyleLink"   
-            ng-class="{'nav-item':true,'black-bar':true,'hb1':false,'b1':true, style1: true}"
+            ng-class="{'nav-item':true,'hb1':false,'b1':true, style1: true,'cc':true}"
             ng-click="onNextStyle()">
             {{styleLinkValue}}
         </button>
 
         <button  ng-show="showColorLink"   
-            ng-class="{'nav-item':true,'black-bar':true,'hb1':false,'b1':true, color1: true}"
+            ng-class="{'nav-item':true,'hb1':false,'b1':true, color1: true,'cc':true}"
             ng-click="onNextColor()">
             {{colorLinkColor}}
         </button> 
@@ -71,22 +71,25 @@
                                        ng-click="onSignOut()"  href="#">Sign Out</a></li>
 
         <li  ng-show="!userSignedIn"><a
-           ng-class="{'nav-item':true,'black-bar':true,'hb1':hiInfo,'b1':!hiInfo}"
+           ng-class="{'nav-item':true,'hb1':hiInfo,'b1':!hiInfo,'cc':true}"
             href="#!info"    >Info</a> </li> 
 
         <li  ng-show="!userSignedIn"><a
-            ng-class="{'nav-item':true,'black-bar':true,'hb1':hiAbout,'b1':!hiAbout}"
+            ng-class="{'nav-item':true,'hb1':hiAbout,'b1':!hiAbout,'cc':true}"
               href="#!about"    >About</a> </li>  
 
         <li  ng-show="!userSignedIn"><a 
-             ng-class="{'nav-item':true,'black-bar':true,'hb1':hiAdmin,'b1':!hiAdmin}"
+             ng-class="{'nav-item':true,'hb1':hiAdmin,'b1':!hiAdmin,'cc':true}"
              href="#!admin"    >Admin</a> </li>   
 
-        <li><span class="black-bar" style='color:burlywood; font-size: large'>
+        <li><span class="cc" 
+             style='color:burlywood; background-color: black ; font-size: large'>
             {{customerId + asterisk}} 
             {{customerFirst + ' ' + customerLast}}
        
         </span></li>
-    </ul>
+    </ul>  
+   
+     
     
- </div>
+ 

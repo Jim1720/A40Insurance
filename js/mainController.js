@@ -164,6 +164,23 @@ app.controller('mainController', ['$scope', '$location', 'authorizeStyleService'
 				$location.path(goto); 
      }
 
+     /* copied from link controller ; have menu run this for 'signout' button. */
+
+     $scope.OnMenuBtnSignOut = function()  {   // ie11 no lambdas! 
+         
+        //https://www.undefinednull.com/2014/02/11/mastering-the-scope-of-a-directive-in-angularjs/
+
+           $scope.userSignedIn = false;  
+           $scope.customerFirst = "";
+           $scope.customerLast = "";
+           $scope.customerId = "";
+           $scope.asterisk = "";
+           $location.path('/start');   
+     
+      }
+
+
+
      //TODO: remember class var to change highlight on todo to btn-xxx for goldenrod effect.
      
 }]);
