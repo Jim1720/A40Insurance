@@ -17,12 +17,13 @@ app.service('customerService', function() {
             return "wow ok";
       }
 
-      this.storeCustomer = function (cust) { 
+      this.storeCustomer = function (cust) {  
 
             holdCustomer = cust;
       };
 
-      this.getCustomer = function () { 
+      this.getCustomer = function () {  
+            
             return holdCustomer;
       };
 

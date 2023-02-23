@@ -1,0 +1,110 @@
+
+ March 1
+ =======
+
+ 30:up
+ 40:up
+ 50:up - did not install polyfill - check with react site before installing. checking  on chrome.
+ 65:up
+ 60:up and running
+
+
+ 30: check labels on ie11 to show colors: ie looks good;chrome;edge.
+     enc was null 60 blew
+         add enc to cust add a45.
+         ** may need enc on claim record too.
+     check extensions stamps: etc. looks ok
+     uat
+     ( ) ie 11 cold not read cust 3 after added ; enc = "" fixed.
+     (MAY NOT DO THIS. ) add ENC to claim record if you intend to use encryption - all other fields look initialized.
+
+     date mmddyy; mmddyyyy; mm/dd/yyyy mm/dd/yy  ; claim first
+        ( Removed too much logic for this mmddyy(yy) used.) claim service: added slash capability test before using on reg,upd.
+        ( ) claim service date coded - in the date edit routine
+            this applies to all claim dates.
+            < > copy date edit to reg, upd.
+            < > add gender and middle to reg,upd.
+                // have to leave for gyn in the middle of after noon 255pm.
+     then reg.upd.
+     check azure needs ; connect string ready to add to azure with new db.
+     check vault.
+
+  3/2/20:30: added gen,dob,mid to reg,upd; add can btn to reg. copy date edit from claim.
+         30: ie11 - fails to load date checking func.
+  
+  3/2/20: DO EDGE CHECK ON ALL clients. second language/instrument.
+          ..react fails on edge and ie
+             ...checking react site for fix for edge...
+             ( ) fix
+          ..ie4 works with A40 but date is misformatted only check dates on all.
+          ..(node,react,ang) to angular see tutorials.
+
+  pm.update - 30 forms changed to match 40 for: buttons and input text size
+              30 added gen,dob,mid to reg,upd
+              30 outstanding: dob ie4 is full text
+              30 features look good
+        
+  pending: a40 test with ie4 fixes
+           ( ) test fix ie4 preferred
+           ( ) feature set 2 test stamps etc.
+  pending: react 50 - does not work on edge ie11 
+           ( ) feature set 2 test stamps etc.
+           ( ) look for fixes poly's etc for edge espically then ie11 and or detect 11 and stop.
+  pending  60:
+           ( ) finish uat and check features
+           ( )  ( ) feature set 2 test stamps etc.
+  azure pending:
+           ( ) learn keyvault
+           ( ) learn how to put node there
+  pending: show case app
+  pending; continue C# , powershell training etc etc.
+
+freelancer.com
+
+           
+  actions: 3.3 30 - created date.service to be tested by jasmine ( part 1). 
+           3.3 40 - test extended feats like stamps etc. 
+                    * adjustment stamp works, claim stamp works; fields initialized
+                    * global url set up from 'appService' new.
+                    (global url is working)
+                    (complete) feature set of A40
+                    (LOOKS GOOD IE11 issues fixed: lambda functions; deconstructions!        ) test a40 with IE11 and new URL.
+                               ** new url works but IE11 has blank screen with no console errors! what the heck!
+                    ( LOOKS GOOD BUT ALAS IE11       ) fix noted items below:::
+                    -   - drug name edit fails; 
+                    -  FIXED WORKING adj stamp should be on adjusted claim 
+                    -  FIXED WORKING app adjusted undefined
+                    --ok x ie11 reset password ; decompose fixed.
+                    --ok x ie11 register edit not lambda
+                    --ok x ie11 update show data on screen not lambda.
+                    ==ok x=foxed ie11 claim : same as above.
+                     (fixed ) ie11 still blank; but no syntax errors!
+
+		 && IE 11 usability looking ...
+                 %% found the docs.
+
+			https://docs.angularjs.org/guide/ie#!
+
+                 && pay function and pay on history
+                 && deny function and deny on history
+                 && enough, is enough, no more enhancements!!
+                 ..( ) ** drug name edit
+                 ..( ) ie11 - can reg, and file claims and historize! no. 15 cust id.
+                       -- adjusted worked
+                       ( OK )lambda ** update blank fields
+                       ( OK  ) ** hist not showing adjustment! // 14 good shows 2 claims ran trace looks good
+                       (  ok) fixed deconstruct!  ** adm action: variables loosed! no erros on console.
+
+                   
+                 && pay function and pay on history / not coded removing button and stub
+                 && deny function and deny on history / not coded removing button and stub
+                 && ( ) drug field edit
+                 && laste name and address testing goto 50.
+                 40 done backing up at 3.3 6:55 pm. PST.
+
+
+   
+
+              
+
+

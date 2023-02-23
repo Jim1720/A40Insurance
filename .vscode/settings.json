@@ -1,0 +1,4 @@
+{
+    "appService.deploySubpath": ".",
+    "appService.defaultWebAppToDeploy": "/subscriptions/379d5d59-2ff4-4f3a-9ad9-f5095e8281c7/resourceGroups/appsvc_windows_centralus/providers/Microsoft.Web/sites/Project20A40Insurance121821JSBA04"
+}

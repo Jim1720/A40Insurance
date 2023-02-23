@@ -1,0 +1,10 @@
+
+
+project notes
+
+
+10.27 router works as hash bang 
+10.27 a40insurance did not work as module had to shorten it to get router working
+10.27 fixed screens and buttons to work
+10.27 fixed regex [0-9][a-z] does not work need [0-9a-z].
+10.27 mainController navMesage not updated to customer name when signing in ??

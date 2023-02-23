@@ -8,9 +8,11 @@ var app = angular.module('a40',["ngRoute"]);
 
 app.config(function($routeProvider) {
 
-    debugger;  
+    debugger;   
 
     $routeProvider
+
+    .when('/',     { templateUrl: "htm/start.htm"})
 
     .when('/start',     { templateUrl: "htm/start.htm"})
     .when('/signin',    { templateUrl: "htm/signin.htm"})
@@ -25,7 +27,9 @@ app.config(function($routeProvider) {
     .when('/about',     { templateUrl: "htm/about.htm"})
     .when('/info',      { templateUrl: "htm/info.htm"})
     .when('/claim',     { templateUrl: "htm/claim.htm"})
-    .when('/history',   { templateUrl: "htm/history.htm"})
+    .when('/history',   { templateUrl: "htm/history.htm"}) 
+    .when('/redirecthistory',  
+                        { templateUrl: "htm/history.htm"})
     .when('/signout',   { templateUrl: "htm/start.htm"})
     .when('/adjust',    { templateUrl: "htm/claimAdjustment.htm"}) 
     .when('/hub',       { templateUrl: "htm/citycenter.htm"}) 

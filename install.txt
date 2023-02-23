@@ -1,0 +1,27 @@
+
+  install express and body-parser via npm  in the /aproject parent directory 
+  
+ >node server.js  - in the parent directory
+ URL
+
+ is 
+
+ localhost/A40/a.htm
+
+
+Navigate to project route folder.
+Open “angular.json” file.
+Search for “serve” configuration and it contains “options” cofig.
+Add “port”:3001(or any other number) property inside options.
+ "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "latest-angular:build",
+			"port": 3001
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "latest-angular:build:production"
+            }
+          }
+        }

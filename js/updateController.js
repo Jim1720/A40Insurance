@@ -70,6 +70,8 @@ app.controller('updateController',
 		$scope.custGender = $scope.cust.custGender;
 		$scope.custMiddle = $scope.cust.custMiddle;
 		$scope.custPlan = $scope.cust.custPlan; 
+		// not on screen store it for update later....
+		appService.setPlan($scope.custPlan);
 		$scope.custBirthDate = 
 			   $scope.showDateOnScreen($scope.cust.custBirthDate);
 		$scope.custPass = "";
@@ -195,14 +197,25 @@ app.controller('updateController',
 			debugger;
             if($scope.custPass === "") { 
 				// preserve origional password if none entered.
-				$scope.cust2 = customerService.getCustomer();
-				$scope.cust.custPassword = $scope.cust2.custPassword;
+				$scope.cust2 = customerService.getCustomer(); 
+				var a = $scope.cust2.custPassword;
+				var b = $scope.cust2.custPass;
+				var usePassword = 'x';
+				if (a != null || a != undefined) { 
+					usePassword = a;
+				}
+				if (b != null || b != undefined) { 
+					usePassword = b;
+				} 
+
+				$scope.cust.custPassword = usePassword; 
 
 			} else { 
-				// use new password value.
+				// use new password value. 
 				$scope.cust.custPassword  = $scope.custPass; 
 
-			}
+			} 
+
 			$scope.cust.custFirst = $scope.custFirst;
 			$scope.cust.custLast  = $scope.custLast; 
 			$scope.cust.email     = $scope.custEmail;
@@ -213,8 +226,7 @@ app.controller('updateController',
 			$scope.cust.custState = $scope.custState;
 			$scope.cust.custZip   = $scope.custZip; 
 			$scope.cust.custMiddle = $scope.custMiddle;
-			$scope.cust.custGender = $scope.custGender; 
-			$scope.cust.custPlan = '';
+			$scope.cust.custGender = $scope.custGender;  
 			debugger;
 			$scope.cust.custBirthDate = $scope.formatBirthDate;
 
@@ -223,35 +235,41 @@ app.controller('updateController',
 			$scope.custPass = clear;
 			$scope.custPass2 = clear;
 
+			// get plan found on customer stored in appService
+			$scope.cust.custPlan = appService.getPlan();
+
 			// need to update customer internal copy be for async stuff
 			// else it becomes null!
 			customerService.storeCustomer($scope.cust);
 
 			// add XSRF-TOKEN
-			$scope.cust['_csrf'] = tokenService.getToken();
-
-		 
-
+			$scope.cust['_csrf'] = tokenService.getToken(); 
 
 			// now the async stuff. 
 			var url = appService.getAPIUrl();
 			$http.put(url + 'update/', $scope.cust)
 			.then(function(data,status,headers,config) {
 
-				  // print success message and transfer
-				  // $scope.messages[0] = "Customer updated successfully."; 
-				  $scope.message = "Customer updated successfully."; 
+				// callers must check Status/Message if 
+				// they are sensitive to the email edit.
+				
+				debugger; 
+			
+				// print success message and transfer
+				// $scope.messages[0] = "Customer updated successfully."; 
+				$scope.message = "Customer updated successfully.";  
 				
 
 			}, 
 			function(data,status,headers,config) {
 
-				var message = '';
+				var message = ''; 
 
 				if(status === 500) {
 					
 					message = "Server down or critical error : Please contact administerators.";
 					console.log("Message: " + data.data); 
+
 				} else {
 
 					message = 'Customer not found.' 
@@ -279,11 +297,11 @@ app.controller('updateController',
 		var name2 = "^[a-zA-Z0-9.#\s]+"; // city names 
 		var addr2 = "^[a-zA-Z0-9.#\s]*"; // addr 2 is not req allow space. * o,more
 		var phone = "^[0-9]{10}|([0-9]{3})[0-9]{3}-[0-9]{4}$";
-		var email =  "^[0-9a-zA-Z]+@[0-9a-zA-Z]+.{1}[0-9a-zA-Z]+$"; 
+		//var email =  "^[0-9a-zA-Z]+@[0-9a-zA-Z]+.{1}[0-9a-zA-Z]+$"; 
 		var date1 = "^[0-9\/]+$"; // dob  
 		var mid1 = "^[a-zA-z]*$";  // * optional 
-		
-	
+		var email = appService.getePattern(); // use A45 common pattern for emails. -flexable-
+	 
 		var pat1 = new RegExp(name1);
 		var pat2 = new RegExp(name2); 
 		var pat2a = new RegExp(addr2);
@@ -313,6 +331,9 @@ app.controller('updateController',
 		if(!pat2.test($scope.custLast.trim())) { 
 			msg.push('invalid  last name'); 
 		}
+
+		ePattern = appService.getePattern();
+
 	
 		if(!pEmail.test($scope.custEmail.trim())) { 
 			msg.push('invalid  email'); 
@@ -383,7 +404,7 @@ app.controller('updateController',
 			} 
 		} 
 	
-		console.log('editor msg length' + msg.length)
+		//console.log('editor msg length' + msg.length)
 		debugger;
 	
 		if(msg.length === 0) {

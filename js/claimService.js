@@ -1,9 +1,13 @@
 
 // claimService.js
 
-app.service('claimService', [ '$http', '$location', 'appService', 'tokenService',
+app.service('claimService', [ '$http', '$location', 'appService', 'tokenService',  
              function($http, $location, appService, tokenService) {
  
+
+                // depricated .... logic moved to historyControllor to try to solve
+                // mysterious timing issue of screen not  geting updated.
+
 
     // updates claim by paying, voiding etc.
     // called from history screen
@@ -18,18 +22,12 @@ app.service('claimService', [ '$http', '$location', 'appService', 'tokenService'
     currentClaim = {}; // hold claim to adjust.
     
 
-    this.processClaim = function(action, claimIdNumber)  {
+    this.processClaim = function(action, claimIdNumber, paymentAmount, today)  {
 
     switch(action) {
 
         case  'PayClaimWithUserInput':
-             // prompt user for payment amount
-             var paymentAmount = this.promptUserForAmount();
-             if(paymentAmount === null) {
-                 return null;; // bad amount return to history
-             }
-             // get current date
-             var today = this.getCurrentDate();
+             
              var defaultPlan = "";
              var serverAction = "pay";
 
@@ -49,6 +47,9 @@ app.service('claimService', [ '$http', '$location', 'appService', 'tokenService'
                  var message = "pay claim db update unsuccessful";
                  this.setPendingMessage(message);
                  return message;
+             } else {
+             
+                 return "OK"; 
              }
 
              
@@ -68,17 +69,7 @@ app.service('claimService', [ '$http', '$location', 'appService', 'tokenService'
         return today;
     }
 
-    //this.promptUserForAmount = () => { // ie 11
-    this.promptUserForAmount = function() {
-
-        var userAmount = prompt("Please enter amount of payment...");
-        var amt = parseFloat(userAmount);
-        if(isNaN(amt)) {
-            console.log("please enter proper dollar amount...0");
-            return null;
-        }  
-        return amt;
-    }
+    
 
     this.makePaymentStatusUpdate = function(claimStatusObject)  {
 
@@ -99,8 +90,7 @@ app.service('claimService', [ '$http', '$location', 'appService', 'tokenService'
                var b = claimStatusObject.amount.toString();
                // ie 11 var message = `Claim ${a} paid with $${b}.`;
                var message = "Claim " + a + " paid with $" + b + ".";
-               closureThis.setPendingMessage(message); 
-               $location.path('hub');
+               closureThis.setPendingMessage(message);  
    
          }, 
          function(data,status,headers,config) {

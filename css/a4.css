@@ -38,10 +38,10 @@
    /* TODO: change hover to btn-outline-warning */
    
    .b1:hover { color: goldenrod; background-color: black }
-   .b1 { color: white;  background-color: black; margin: 2px;
+   .b1 { color: white;   margin: 2px;
          font-size:  larger;  }
          
-   .hb1 { color: burlywood;  background-color: black; margin: 2px;
+   .hb1 { color: burlywood; margin: 2px;
       font-size:  larger;  }
 
    .b2 { color: dodgerblue;  background-color: black; margin: 2px;
@@ -168,24 +168,28 @@ li  { display: inline; }
    color: aqua;
    border-color: white;
    margin-left: 20px;
+   background-color: black;
 }
 
 .g2pay {
    color: red;
    border-color: white;
    margin-left: 20px;
+   background-color: black;
 }
 
 .g3adjust {
    color: yellow;
    border-color: white;
    margin-left: 20px;
+   background-color:black;
 }
 
 .g4stay {
    color: lightgreen;
    border-color: white;
    margin-left: 20px;
+   background-color : black;
 }
 
 
@@ -193,6 +197,7 @@ li  { display: inline; }
    color: lightgreen;
    border-color: white;
    margin-left: 20px;
+   background-color : black;
 }
 
 
@@ -200,6 +205,7 @@ li  { display: inline; }
    color: burlywood;
    border-color: white;
    margin-left: 20px;
+   background-color : black;
 }
 
 
@@ -207,6 +213,7 @@ li  { display: inline; }
    color: lightgreen;
    border-color: white;
    margin-left: 20px;
+   background-color : black;
 }
 
 
@@ -214,6 +221,7 @@ li  { display: inline; }
    color: burlywood;
    border-color: white;
    margin-left: 20px;
+   background-color : black;
 }
 
 
@@ -221,6 +229,7 @@ li  { display: inline; }
    color: lightcoral;
    border-color: white;
    margin-left: 20px;
+   background-color : black;
 }
 
 
@@ -228,6 +237,7 @@ li  { display: inline; }
    color: burlywood;
    border-color: white;
    margin-left: 20px;
+   background-color : black;
 }
 
 
@@ -236,6 +246,7 @@ li  { display: inline; }
    color: aqua;
    border-color: white;
    margin-left: 20px;
+   background-color : black;
 }
 
 
@@ -245,6 +256,7 @@ li  { display: inline; }
    color: burlywood;
    border-color: white;
    margin-left: 20px;
+   background-color : black;
 }
 
 
@@ -252,8 +264,18 @@ li  { display: inline; }
    color: burlywood;
    border-color: white;
    margin-left: 20px;
+   background-color : black;
 }
 
 html {
    scroll-behavior: smooth;
 }
+
+
+.white-bottom-line { border-bottom: 1px white solid }
+
+/* link spacing */
+
+.aa { margin-left: 250px }
+.cc { margin-left: 5px }
+ 

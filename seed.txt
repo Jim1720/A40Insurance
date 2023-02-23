@@ -1,0 +1,40 @@
+ 
+built from June 08 2020 E
+seed june 11 p1
+june 14 p2 - basic restructure of jwttoken is in to get it at logon;
+             mods to match new fmt of a4server2 json returns 
+seed: june 2020a
+seed: june 25 2020 T1.
+seed: july 15 B1.
+seed: July 17 
+seed: July 25A 2020  Q2 - look in init of claim service for new code 2x perform of set up types. in new code. do not use queued.
+seed: July 27K
+seed: August 01 2020 A
+seed: August 07 2020 B1
+seed: August 14 2020 PR
+seed: August 20 2020 C0
+seed: August 30 2020 R1
+seed: September 21 2020 A2
+seed: June 26 2021 A00
+seed: June 28 2021 A01 - carousel works in chrome. coding for styles in progress.
+seed: July 01 2021 A01
+seed: July 06 7:54 PM A06
+seed: July 10 2021 B10
+seed: July 14 2021 C00 - ready for round 1 testing.
+seed: August 3 2021 Round 1
+seed: August 19 2021 Round 2A
+seed: August 22 2021 A00
+seed: August 29 2021 Round 3
+seed: September 28 2021 P01 
+seed: Jan 07 2022 Prod
+seed: December 21 2021
+seed: December 09 2021 4 days ago
+seed: December 09 2021
+seed: Nov 30 2021
+seed: November 23rd 2021 TA40 AM
+seed: Nov 10 2021 Code Nav
+seed: Nov 23 2021 AM
+seed: Dec 21 2021
+seed: Jan 5 2022
+seed: Jan 7 2022 Prod
+seed: April 30 2022 Code for top links

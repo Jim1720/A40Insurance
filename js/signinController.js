@@ -111,7 +111,8 @@ app.controller('signinController', ['$http', '$scope', 'customerService', '$loca
 				$scope.$parent.$parent.customerFirst = first;
 				$scope.$parent.$parent.customerLast = last; 
 				$scope.$parent.$parent.asterisk = ' * ';
-				$scope.$parent.navMessage = first + " " + last;
+				$scope.$parent.navMessage = first + " " + last; 
+				$scope.$parent.$parent.customerId =foundCust.custId.trim();
 
 				appService.setAdminLoggedOut();
 				// protect url from bypass login process
@@ -122,7 +123,11 @@ app.controller('signinController', ['$http', '$scope', 'customerService', '$loca
 				claimService.setPendingMessage(msg);
 
 				var token = result['Token'];
-				tokenService.setToken(token); 
+				tokenService.setToken(token);  
+				
+				//store email pattern for editing 
+				var ePattern = result['EmailPattern'] 
+				appService.setePattern(ePattern);
 				
 				// all good - continue to update screen.
 				$location.path('/hub');

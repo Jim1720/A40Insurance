@@ -186,7 +186,7 @@ app.controller('registrationController', [ '$http','$scope', 'customerService',
 					$scope.pass = false;
 					var msg = result['Message'];
 					closureThis.message = msg;
-					$scope.message = "Unsuccessful Add";
+					$scope.message = "Unsuccessful Add" + msg;
 					return;
 
 				  }
@@ -204,6 +204,7 @@ app.controller('registrationController', [ '$http','$scope', 'customerService',
 				  $scope.$parent.$parent.customerFirst = first;
 				  $scope.$parent.$parent.customerLast = last; 
 				  $scope.$parent.$parent.asterisk = ' * ';
+				  $scope.$parent.$parent.customerId = $scope.cust.custId;
 				  $scope.$parent.navMessage = first + " " + last;
 
 				  // URL control prevent url access...
@@ -213,6 +214,11 @@ app.controller('registrationController', [ '$http','$scope', 'customerService',
 				  // set token 
 				  var token = result['Token'];
 				  tokenService.setToken(token);
+
+
+				  var ePattern = result['EmailPattern'] 
+				  appService.setePattern(ePattern); 
+				   
 
 				  var msg = "Registered. Update plan information.";
 			      claimService.setPendingMessage(msg);
